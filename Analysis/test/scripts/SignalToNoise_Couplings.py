@@ -14,7 +14,7 @@ CHANNELS = ["ElectronChannel", "MuonChannel"]
 
 
 LAST_BIN_INDEX = 4 # 70+ Bin
-BACKGROUND_UNCERTAINTY = {'ElectronChannel':100, 'MuonChannel':10.5}
+BACKGROUND_UNCERTAINTY = {'ElectronChannel':9.1, 'MuonChannel':10.5}
 
 
 
@@ -139,6 +139,38 @@ def MakeLMCouplingStrengthHistNameContainer(channel, coupling_class):
                                   ( 90, channel+ "_aQGC_Weight_11_Category_Pt"),
                                   ( 100, channel+ "_aQGC_Weight_12_Category_Pt")
                                   ]
+        coupling_strength_histnames_container.append((coupling_type, strength_and_histnames))
+      
+        # LT1
+        coupling_type = "LT1"
+        strength_and_histnames = [
+            ( 10, channel+ "_aQGC_Weight_28_Category_Pt"),
+            ( 20, channel+ "_aQGC_Weight_29_Category_Pt"),
+            ( 30, channel+ "_aQGC_Weight_30_Category_Pt"),
+            ( 40, channel+ "_aQGC_Weight_31_Category_Pt"),
+            ( 50, channel+ "_aQGC_Weight_32_Category_Pt"),
+            ( 60, channel+ "_aQGC_Weight_33_Category_Pt"),
+            ( 70, channel+ "_aQGC_Weight_34_Category_Pt"),
+            ( 80, channel+ "_aQGC_Weight_35_Category_Pt"),
+            ( 90, channel+ "_aQGC_Weight_36_Category_Pt"),
+            ( 100, channel+ "_aQGC_Weight_37_Category_Pt")
+            ]
+        coupling_strength_histnames_container.append((coupling_type, strength_and_histnames))
+        
+        # LT2
+        coupling_type = "LT2"
+        strength_and_histnames = [
+            ( 10, channel+ "_aQGC_Weight_53_Category_Pt"),
+            ( 20, channel+ "_aQGC_Weight_54_Category_Pt"),
+            ( 30, channel+ "_aQGC_Weight_55_Category_Pt"),
+            ( 40, channel+ "_aQGC_Weight_56_Category_Pt"),
+            ( 50, channel+ "_aQGC_Weight_57_Category_Pt"),
+            ( 60, channel+ "_aQGC_Weight_58_Category_Pt"),
+            ( 70, channel+ "_aQGC_Weight_59_Category_Pt"),
+            ( 80, channel+ "_aQGC_Weight_60_Category_Pt"),
+            ( 90, channel+ "_aQGC_Weight_61_Category_Pt"),
+            ( 100, channel+ "_aQGC_Weight_62_Category_Pt")
+            ]
         coupling_strength_histnames_container.append((coupling_type, strength_and_histnames))
     
     
