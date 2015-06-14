@@ -70,6 +70,25 @@ def MakeHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight):
     histogramBuilder.fillCountHistograms(channel+"_aQGC_Weight_"+str(aqgc_weight_index), aqgc_weight)
     histogramBuilder.fillPtHistograms(channel+"_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
     histogramBuilder.fillPtCategoryHistograms(channel+"_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
+    #Make Reweighting Histograms
+    #MakeReweightingHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight)
+
+    MakeCovarianceHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight)
+
+# Histogrmas the reweighting values, with respect to the SM.
+def MakeReweightingHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight):
+    reweight = aqgc_weight/sm_weight
+
+    if tree.pt_leadph12 > 200:
+        histogramBuilder.fillAQGCReweightHistograms(channel+"PtGT200_"+str(aqgc_weight_index), reweight)
+    
+    if tree.pt_leadph12 > 70:
+        histogramBuilder.fillAQGCReweightHistograms(channel+"PtGT70_"+str(aqgc_weight_index), reweight)
+
+# Holds the weights of the sm_weight * the aqc_weight
+def MakeCovarianceHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight):
+    histogramBuilder.fillPtCategoryHistograms(channel+"_aQGC_Covariance_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight*sm_weight)
+    histogramBuilder.fillPtHistograms(channel+"_aQGC_Covariance_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight*sm_weight)
 
 #Separate Lead and Sub Lead Photons between Barrel and EndCap.
 # 0 is EBEB, 1 EBEE, 2 EEEB, 3 is all others

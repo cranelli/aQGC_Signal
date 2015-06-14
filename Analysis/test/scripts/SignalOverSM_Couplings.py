@@ -24,12 +24,9 @@ def SignalOverSM_Couplings_AllCouplingClasses():
     for coupling_class, histogram_dir in QGC_HISTOGRAM_DIRS:
         in_file_name =  histogram_dir+"Reweighted_RecoCategoryHistograms_Normalized.root"
         out_file_name =histogram_dir+"SignalOverSM_Couplings.root"
-        SignalOverSM_Couplings(in_file_name, out_file_name, coupling_class)
-
-    
+        SignalOverSM_Couplings(in_file_name, out_file_name, coupling_class)    
     
 def SignalOverSM_Couplings(in_file_name, out_file_name, coupling_class):
-
     inFile = TFile(in_file_name, "READ")
     outFile = TFile(out_file_name, "RECREATE")
 
@@ -41,7 +38,6 @@ def SignalOverSM_Couplings(in_file_name, out_file_name, coupling_class):
         for ptbin in range(3, NUM_PT_BINS+1):
             for coupling_type, strength_and_histnames in coupling_strengths_match_to_histnames:
                 MakeHists(coupling_type, channel, ptbin, strength_and_histnames, inFile, outFile)
-
 
 # For a specified coupling type, ie LM0, LM1, LM2, etc, makes a Signal vs Coupling histogram
 def MakeHists(coupling_type, channel, ptbin, strength_and_histnames, inFile, outFile):
@@ -63,7 +59,6 @@ def MakeHists(coupling_type, channel, ptbin, strength_and_histnames, inFile, out
     #Loop Over All coupling_strengths
     for coupling_strength, hist_name in strength_and_histnames:
         print "Coupling Strength", coupling_strength
-
         h1AQGC = inFile.Get(hist_name)
         
         # Divide AQGC by SM
@@ -84,8 +79,7 @@ def MakeHists(coupling_type, channel, ptbin, strength_and_histnames, inFile, out
         signal_over_sm_hist.SetBinError(bin_index, aqgc_over_sm_error)
 
 
-
-# Fit Histogram
+    # Fit Histogram
     xmin = signal_over_sm_hist.GetXaxis().GetXmin()
     xmax = signal_over_sm_hist.GetXaxis().GetXmax()
     f1 = TF1("f1", "[0]+[1]*x+[2]*x*x", xmin, xmax)
