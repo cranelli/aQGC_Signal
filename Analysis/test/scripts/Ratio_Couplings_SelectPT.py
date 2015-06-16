@@ -203,7 +203,7 @@ def MakeCouplingStrengthHistNameContainer(channel, coupling_class):
                                   #( 100, channel+ "_aQGC_Weight_12_Pt")
                                   ]
         coupling_strength_histnames_container.append((coupling_type, strength_and_histnames))
-    """
+    
         # LT1
         coupling_type = "LT1"
         strength_and_histnames = [
@@ -212,17 +212,17 @@ def MakeCouplingStrengthHistNameContainer(channel, coupling_class):
                                   #( -80, channel+ "_aQGC_Weight_47_Pt"),
                                   #( -70, channel+ "_aQGC_Weight_46_Pt"),
                                   #( -60, channel+ "_aQGC_Weight_45_Pt"),
-                                  ( -50, channel+ "_aQGC_Weight_44_Pt"),
-                                  ( -40, channel+ "_aQGC_Weight_43_Pt"),
-                                  ( -30, channel+ "_aQGC_Weight_42_Pt"),
-                                  ( -20, channel+ "_aQGC_Weight_41_Pt"),
-                                  ( -10, channel+ "_aQGC_Weight_40_Pt"),
-                                  ( 0, channel+ "_aQGC_Weight_25_Pt"),
-                                  ( 10, channel+ "_aQGC_Weight_28_Pt"),
-                                  ( 20, channel+ "_aQGC_Weight_29_Pt"),
-                                  ( 30, channel+ "_aQGC_Weight_30_Pt"),
-                                  ( 40, channel+ "_aQGC_Weight_31_Pt"),
-                                  ( 50, channel+ "_aQGC_Weight_32_Pt"),
+                                  ( -50, channel+ "_aQGC_Weight_44_Pt", channel+ "_aQGC_Covariance_44_Pt"),
+                                  ( -40, channel+ "_aQGC_Weight_43_Pt", channel+ "_aQGC_Covariance_43_Pt"),
+                                  ( -30, channel+ "_aQGC_Weight_42_Pt", channel+ "_aQGC_Covariance_42_Pt"),
+                                  ( -20, channel+ "_aQGC_Weight_41_Pt", channel+ "_aQGC_Covariance_41_Pt"),
+                                  ( -10, channel+ "_aQGC_Weight_40_Pt", channel+ "_aQGC_Covariance_40_Pt"),
+                                  ( 0, channel+ "_aQGC_Weight_25_Pt", channel+ "_aQGC_Covariance_25_Pt"),
+                                  ( 10, channel+ "_aQGC_Weight_28_Pt", channel+ "_aQGC_Covariance_28_Pt"),
+                                  ( 20, channel+ "_aQGC_Weight_29_Pt", channel+ "_aQGC_Covariance_29_Pt"),
+                                  ( 30, channel+ "_aQGC_Weight_30_Pt", channel+ "_aQGC_Covariance_30_Pt"),
+                                  ( 40, channel+ "_aQGC_Weight_31_Pt", channel+ "_aQGC_Covariance_31_Pt"),
+                                  ( 50, channel+ "_aQGC_Weight_32_Pt", channel+ "_aQGC_Covariance_32_Pt"),
                                   #( 60, channel+ "_aQGC_Weight_33_Pt"),
                                   #( 70, channel+ "_aQGC_Weight_34_Pt"),
                                   #( 80, channel+ "_aQGC_Weight_35_Pt"),
@@ -239,17 +239,17 @@ def MakeCouplingStrengthHistNameContainer(channel, coupling_class):
                                   #( -80, channel+ "_aQGC_Weight_72_Pt"),
                                   #( -70, channel+ "_aQGC_Weight_71_Pt"),
                                   #( -60, channel+ "_aQGC_Weight_70_Pt"),
-                                  ( -50, channel+ "_aQGC_Weight_69_Pt"),
-                                  ( -40, channel+ "_aQGC_Weight_68_Pt"),
-                                  ( -30, channel+ "_aQGC_Weight_67_Pt"),
-                                  ( -20, channel+ "_aQGC_Weight_66_Pt"),
-                                  ( -10, channel+ "_aQGC_Weight_65_Pt"),
-                                  ( 0, channel+ "_aQGC_Weight_50_Pt"),
-                                  ( 10, channel+ "_aQGC_Weight_53_Pt"),
-                                  ( 20, channel+ "_aQGC_Weight_54_Pt"),
-                                  ( 30, channel+ "_aQGC_Weight_55_Pt"),
-                                  ( 40, channel+ "_aQGC_Weight_56_Pt"),
-                                  ( 50, channel+ "_aQGC_Weight_57_Pt"),
+                                  ( -50, channel+ "_aQGC_Weight_69_Pt", channel+ "_aQGC_Covariance_69_Pt"),
+                                  ( -40, channel+ "_aQGC_Weight_68_Pt", channel+ "_aQGC_Covariance_68_Pt"),
+                                  ( -30, channel+ "_aQGC_Weight_67_Pt", channel+ "_aQGC_Covariance_67_Pt"),
+                                  ( -20, channel+ "_aQGC_Weight_66_Pt", channel+ "_aQGC_Covariance_66_Pt"),
+                                  ( -10, channel+ "_aQGC_Weight_65_Pt", channel+ "_aQGC_Covariance_65_Pt"),
+                                  ( 0, channel+ "_aQGC_Weight_50_Pt", channel+ "_aQGC_Covariance_50_Pt"),
+                                  ( 10, channel+ "_aQGC_Weight_53_Pt", channel+ "_aQGC_Covariance_53_Pt"),
+                                  ( 20, channel+ "_aQGC_Weight_54_Pt", channel+ "_aQGC_Covariance_54_Pt"),
+                                  ( 30, channel+ "_aQGC_Weight_55_Pt", channel+ "_aQGC_Covariance_55_Pt"),
+                                  ( 40, channel+ "_aQGC_Weight_56_Pt", channel+ "_aQGC_Covariance_56_Pt"),
+                                  ( 50, channel+ "_aQGC_Weight_57_Pt", channel+ "_aQGC_Covariance_57_Pt"),
                                   #( 60, channel+ "_aQGC_Weight_58_Pt"),
                                   #( 70, channel+ "_aQGC_Weight_59_Pt"),
                                   #( 80, channel+ "_aQGC_Weight_60_Pt"),
@@ -257,7 +257,7 @@ def MakeCouplingStrengthHistNameContainer(channel, coupling_class):
                                   #( 100, channel+ "_aQGC_Weight_62_Pt"),
                                   ]
         coupling_strength_histnames_container.append((coupling_type, strength_and_histnames))
-    """
+
     
     return coupling_strength_histnames_container
 
