@@ -15,8 +15,7 @@ QGC_HISTOGRAM_DIRS=[("LM","../Histograms/LepGammaGammaFinalElandMuUnblindAll_201
 
 CHANNELS = ["ElectronChannel", "MuonChannel"]
 
-
-LAST_PTS = [70, 100, 110, 120,  125, 150, 175, 200] # 70+, 100+ etc
+LAST_PTS = [70, 80, 90, 95, 100, 105, 110, 120, 125, 150, 175, 200]
 #BACKGROUND_UNCERTAINTY = {'ElectronChannel':9.1, 'MuonChannel':10.5}
 
 
@@ -149,34 +148,34 @@ def MakeCouplingStrengthHistNameContainer(channel, coupling_class):
                                   ( 1000, channel+ "_aQGC_Weight_62_Pt", channel+ "_aQGC_Covariance_62_Pt")
                                   ]
         coupling_strength_histnames_container.append((coupling_type, strength_and_histnames))
-    """
+    
         # LM3
         coupling_type = "LM3"
         strength_and_histnames = [
-                                  ( -1000, channel+ "_aQGC_Weight_99_Pt"),
-                                  ( -900, channel+ "_aQGC_Weight_98_Pt"),
-                                  ( -800, channel+ "_aQGC_Weight_97_Pt"),
-                                  ( -700, channel+ "_aQGC_Weight_96_Pt"),
-                                  ( -600, channel+ "_aQGC_Weight_95_Pt"),
-                                  ( -500, channel+ "_aQGC_Weight_94_Pt"),
-                                  ( -400, channel+ "_aQGC_Weight_93_Pt"),
-                                  ( -300, channel+ "_aQGC_Weight_92_Pt"),
-                                  ( -200, channel+ "_aQGC_Weight_91_Pt"),
-                                  ( -100, channel+ "_aQGC_Weight_90_Pt"),
-                                  ( 0, channel+ "_aQGC_Weight_75_Pt"),
-                                  ( 100, channel+ "_aQGC_Weight_78_Pt"),
-                                  ( 200, channel+ "_aQGC_Weight_79_Pt"),
-                                  ( 300, channel+ "_aQGC_Weight_80_Pt"),
-                                  ( 400, channel+ "_aQGC_Weight_81_Pt"),
-                                  ( 500, channel+ "_aQGC_Weight_82_Pt"),
-                                  ( 600, channel+ "_aQGC_Weight_83_Pt"),
-                                  ( 700, channel+ "_aQGC_Weight_84_Pt"),
-                                  ( 800, channel+ "_aQGC_Weight_85_Pt"),
-                                  ( 900, channel+ "_aQGC_Weight_86_Pt"),
-                                  ( 1000, channel+ "_aQGC_Weight_87_Pt"),
+                                  ( -1000, channel+ "_aQGC_Weight_99_Pt", channel+ "_aQGC_Covariance_99_Pt"),
+                                  ( -900, channel+ "_aQGC_Weight_98_Pt", channel+ "_aQGC_Covariance_98_Pt"),
+                                  ( -800, channel+ "_aQGC_Weight_97_Pt", channel+ "_aQGC_Covariance_97_Pt"),
+                                  ( -700, channel+ "_aQGC_Weight_96_Pt", channel+ "_aQGC_Covariance_96_Pt"),
+                                  ( -600, channel+ "_aQGC_Weight_95_Pt", channel+ "_aQGC_Covariance_95_Pt"),
+                                  ( -500, channel+ "_aQGC_Weight_94_Pt", channel+ "_aQGC_Covariance_94_Pt"),
+                                  ( -400, channel+ "_aQGC_Weight_93_Pt", channel+ "_aQGC_Covariance_93_Pt"),
+                                  ( -300, channel+ "_aQGC_Weight_92_Pt", channel+ "_aQGC_Covariance_92_Pt"),
+                                  ( -200, channel+ "_aQGC_Weight_91_Pt",channel+ "_aQGC_Covariance_91_Pt"),
+                                  ( -100, channel+ "_aQGC_Weight_90_Pt", channel+ "_aQGC_Covariance_90_Pt"),
+                                  ( 0, channel+ "_aQGC_Weight_75_Pt", channel+ "_aQGC_Covariance_75_Pt"),
+                                  ( 100, channel+ "_aQGC_Weight_78_Pt", channel+ "_aQGC_Covariance_78_Pt"),
+                                  ( 200, channel+ "_aQGC_Weight_79_Pt", channel+ "_aQGC_Covariance_79_Pt"),
+                                  ( 300, channel+ "_aQGC_Weight_80_Pt", channel+ "_aQGC_Covariance_80_Pt"),
+                                  ( 400, channel+ "_aQGC_Weight_81_Pt", channel+ "_aQGC_Covariance_81_Pt"),
+                                  ( 500, channel+ "_aQGC_Weight_82_Pt", channel+ "_aQGC_Covariance_82_Pt"),
+                                  ( 600, channel+ "_aQGC_Weight_83_Pt",channel+ "_aQGC_Covariance_83_Pt"),
+                                  ( 700, channel+ "_aQGC_Weight_84_Pt", channel+ "_aQGC_Covariance_84_Pt"),
+                                  ( 800, channel+ "_aQGC_Weight_85_Pt", channel+ "_aQGC_Covariance_85_Pt"),
+                                  ( 900, channel+ "_aQGC_Weight_86_Pt", channel+ "_aQGC_Covariance_86_Pt"),
+                                  ( 1000, channel+ "_aQGC_Weight_87_Pt", channel+ "_aQGC_Covariance_87_Pt"),
                                   ]
         coupling_strength_histnames_container.append((coupling_type, strength_and_histnames))
-    """
+
     if coupling_class == "LT":
         # LT0
         coupling_type = "LT0"
