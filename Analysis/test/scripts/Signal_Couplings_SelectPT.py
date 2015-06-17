@@ -15,7 +15,7 @@ QGC_HISTOGRAM_DIRS=[("LM","../Histograms/LepGammaGammaFinalElandMuUnblindAll_201
 CHANNELS = ["ElectronChannel", "MuonChannel"]
 
 
-LAST_PT = 100 # 70+ Bin
+LAST_PT = 125 # 70+ Bin
 #BACKGROUND_UNCERTAINTY = {'ElectronChannel':9.1, 'MuonChannel':10.5}
 
 
