@@ -3,7 +3,7 @@
 # channels and our different categories.
 # 
 # Example execution from command line:
-#  python MakeRecoCategoryHistograms.py /data/users/cranelli/WGamGam/ReFilterFinalNtuple/LepGammaGammaFinalElandMuUnblindAll_2015_5_3/job_LNuAA_LM0123_Reweight/Job_0000/tree.root ../test/Histograms/LepGammaGammaFinalElandMuUnblindAll_2015_5_3/LM0123_Reweight/Reweighted_RecoCategoryHistograms.root
+#  python MakeRecoCategoryHistograms.py /afs/cern.ch/work/c/cranelli/public/WGamGam/ReFilterFinalNtuple/LepGammaGammaFinalElandMuUnblindAll_2015_5_3/job_LNuAA_LM0123_Reweight/Job_0000/tree.root ../test/Histograms/LepGammaGammaFinalElandMuUnblindAll_2015_5_3/LM0123_Reweight/Reweighted_RecoCategoryHistograms.root
 
 
 import sys
@@ -12,10 +12,10 @@ from ROOT import TFile
 from ROOT import TTree
 from ROOT import vector
 
-import particleIdentification
-import objectCuts
-import eventCuts
-import parentCuts
+#import particleIdentification
+#import objectCuts
+#import eventCuts
+#import parentCuts
 
 import histogramBuilder
 
