@@ -11,8 +11,9 @@ import os
 
 
 CHANNELS = ["MuonChannel", "ElectronChannel"]
+#PHOTON_LOCATIONS=["All", "EBEB", "EBEE", "EEEB", "EBEEandEEEB"]
 
-BASE= "/Users/Chris/WGamGam/aQGC_Signal/Analysis/test/Histograms/LepGammaGammaFinalElandMuUnblindAll_2015_5_3/"
+BASE= "/Users/Chris/WGamGam/aQGC_Signal/Analysis/test/Histograms/LepGammaGammaFinalElandMuUnblindAll_2015_6_9_ScaleFactors/"
 SAMPLES = ["LM0123_Reweight", "LT012_Reweight"]
 
 WEIGHTED_ISR_FSR_FILE_NAME="/Users/Chris/CMS/WGamGam/Acceptances/Fiducial/test/Histograms/LepGammaGammaFinalElandMuUnblindAll_2015_4_19_ScaleFactors_PDFReweights/WeightedTotal_RecoCategoryHistograms.root"
@@ -24,7 +25,6 @@ def Normalize():
     
     # Weighted Combination of ISR and FSR samples
     weighted_ISR_FSR_file = TFile(WEIGHTED_ISR_FSR_FILE_NAME, "READ")
-
 
     # aQGC samples
     for sample_name in SAMPLES:
@@ -45,7 +45,7 @@ def Normalize():
     
     
 
-# Loop Over the channels, and normalize the histograms
+# Loop Over the channels and normalize the histograms
 def NormalizeAllHistograms(aQGC_file, weighted_ISR_FSR_file, out_file):
 
     for channel in CHANNELS:        
@@ -53,7 +53,7 @@ def NormalizeAllHistograms(aQGC_file, weighted_ISR_FSR_file, out_file):
         weighted_ISR_FSR_hist = weighted_ISR_FSR_file.Get(weighted_ISR_FSR_hist_name)
 
         # Coupling set to 0 (SM)
-        aQGC_SM_hist_name = channel+"_aQGC_Weight_0_Count"
+        aQGC_SM_hist_name = channel+"_All_aQGC_Weight_0_Count"
         aQGC_SM_hist = aQGC_file.Get(aQGC_SM_hist_name)
 
         scale = CalcScale(aQGC_SM_hist, weighted_ISR_FSR_hist)
@@ -66,12 +66,7 @@ def NormalizeAllHistograms(aQGC_file, weighted_ISR_FSR_file, out_file):
 
 # Scale Histograms in a given channel, each channel has it's own scaling value.
 def NormalizeHistogramsByChannel(channel, scale, in_file, out_file):
-    #fileLoc = in_file.GetName()
-    #fileName, fileExtension = os.path.splitext(fileLoc) #Remove Extension
     
-    #normalizedFileLoc = fileName+"_Normalized"+fileExtension;
-    #out_file = TFile(normalizedFileLoc, "RECREATE")
-
     list = in_file.GetListOfKeys()
     # Must be in the channel
     for key in list:

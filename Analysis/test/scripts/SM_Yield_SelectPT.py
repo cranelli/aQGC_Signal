@@ -9,10 +9,11 @@ from array import array
 
 from ctypes import c_double
 
-QGC_HISTOGRAM_DIRS=[("LM","../Histograms/LepGammaGammaFinalElandMuUnblindAll_2015_5_3/LM0123_Reweight/"),
-                ("LT", "../Histograms/LepGammaGammaFinalElandMuUnblindAll_2015_5_3/LT012_Reweight/")]
+QGC_HISTOGRAM_DIRS=[("LM","../Histograms/LepGammaGammaFinalElandMuUnblindAll_2015_6_9_ScaleFactors/LM0123_Reweight/"),
+                ("LT", "../Histograms/LepGammaGammaFinalElandMuUnblindAll_2015_6_9_ScaleFactors/LT012_Reweight/")]
 
 CHANNELS = ["ElectronChannel", "MuonChannel"]
+PHOTON_LOCATIONS = ["All", "EBEB", "EBEE", "EEEB", "EBEEandEEEB"]
 
 LAST_PTS = [70, 80, 90, 95, 100, 105, 110, 120, 125, 150, 175, 200] # 70+, 100+ etc
 #BACKGROUND_UNCERTAINTY = {'ElectronChannel':9.1, 'MuonChannel':10.5}
@@ -32,14 +33,12 @@ def SMYield(in_file_name, out_file_name, coupling_class):
     # Separate Histogram for each Channel, Lead Photon Pt Bin, and Coupling Type"
     
     for channel in CHANNELS:
-        # Matching Coupling Strength To Histograms.  Based on the Madgraph Reweight Card
-        #coupling_strengths_match_to_histnames = MakeCouplingStrengthHistNameContainer(channel, coupling_class)
-        #for coupling_type, strength_and_histnames in coupling_strengths_match_to_histnames:
-        for last_pt in LAST_PTS:
-            MakeHists(channel, last_pt, inFile, outFile)
+        for photon_location in PHOTON_LOCATIONS:
+            for last_pt in LAST_PTS:
+                MakeHists(channel, photon_location, last_pt, inFile, outFile)
 
-def MakeHists(channel, last_pt, inFile, outFile):
-    print channel
+def MakeHists(channel, photon_location, last_pt, inFile, outFile):
+    print channel, photon_location, last_pt 
     #print "Coupling Type ", coupling_type
 
     # Histogram Range Depends on Coupling Type
@@ -50,7 +49,7 @@ def MakeHists(channel, last_pt, inFile, outFile):
     smLastPtHist.GetYaxis().SetTitle("SM Yield")
 
     # Get SM and Error
-    h1SM = inFile.Get(channel+ "_aQGC_Weight_0_Pt")
+    h1SM = inFile.Get(channel+ "_"+photon_location+"_aQGC_Weight_0_Pt")
     bin_start = h1SM.FindBin(last_pt)
     bin_finish = h1SM.GetNbinsX() + 1 # Include Overflow Bin
     sm_error_ctype= c_double()
@@ -59,7 +58,7 @@ def MakeHists(channel, last_pt, inFile, outFile):
 
     smLastPtHist.SetBinContent(1, sm_count)
     smLastPtHist.SetBinError(1, sm_error)
-    smLastPtHist.Write(channel+"Pt"+str(last_pt)+"_SMYield")
+    smLastPtHist.Write(channel+"_"+photon_location+"_Pt"+str(last_pt)+"_SMYield")
     
 
 if __name__=="__main__":
