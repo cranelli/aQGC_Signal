@@ -219,61 +219,69 @@ def MakeCouplingStrengthHistNameContainer(channel, photon_location, coupling_cla
             ]
         coupling_strength_histnames_container.append((coupling_type, strength_and_histnames))
 
-        """
+        
         # LT1
         coupling_type = "LT1"
         strength_and_histnames = [
-            #( -100, channel+"_"+photon_location+ "_aQGC_Weight_49_Pt"),
-            #( -90, channel+"_"+photon_location+ "_aQGC_Weight_48_Pt"),
-            #( -80, channel+"_"+photon_location+ "_aQGC_Weight_47_Pt"),
-            #( -70, channel+"_"+photon_location+ "_aQGC_Weight_46_Pt"),
-            #( -60, channel+"_"+photon_location+ "_aQGC_Weight_45_Pt"),
-            ( -50, channel+"_"+photon_location+ "_aQGC_Weight_44_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_44_Pt"),
-            ( -40, channel+"_"+photon_location+ "_aQGC_Weight_43_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_43_Pt"),
-            ( -30, channel+"_"+photon_location+ "_aQGC_Weight_42_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_42_Pt"),
-            ( -20, channel+"_"+photon_location+ "_aQGC_Weight_41_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_41_Pt"),
+            #( -62.5, channel+"_"+photon_location+ "_aQGC_Weight_49_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_24_Pt"),
+            ( -50, channel+"_"+photon_location+ "_aQGC_Weight_48_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_48_Pt"),
+            ( -45, channel+"_"+photon_location+ "_aQGC_Weight_47_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_47_Pt"),
+            ( -40, channel+"_"+photon_location+ "_aQGC_Weight_46_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_46_Pt"),
+            ( -35, channel+"_"+photon_location+ "_aQGC_Weight_45_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_45_Pt"),
+            ( -30, channel+"_"+photon_location+ "_aQGC_Weight_44_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_44_Pt"),
+            ( -25, channel+"_"+photon_location+ "_aQGC_Weight_43_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_43_Pt"),
+            ( -20, channel+"_"+photon_location+ "_aQGC_Weight_42_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_42_Pt" ),
+            ( -15, channel+"_"+photon_location+ "_aQGC_Weight_41_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_41_Pt"),
             ( -10, channel+"_"+photon_location+ "_aQGC_Weight_40_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_40_Pt"),
-            ( 0, channel+"_"+photon_location+ "_aQGC_Weight_25_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_25_Pt"),
+            ( -5, channel+"_"+photon_location+ "_aQGC_Weight_39_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_39_Pt"),
+            ( -2.5, channel+"_"+photon_location+ "_aQGC_Weight_38_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_38_Pt"),
+            ( 0, channel+"_"+photon_location+ "_aQGC_Weight_0_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_0_Pt"),
+            ( 2.5, channel+"_"+photon_location+ "_aQGC_Weight_26_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_26_Pt"),
+            ( 5, channel+"_"+photon_location+ "_aQGC_Weight_27_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_27_Pt"),
             ( 10, channel+"_"+photon_location+ "_aQGC_Weight_28_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_28_Pt"),
-            ( 20, channel+"_"+photon_location+ "_aQGC_Weight_29_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_29_Pt"),
-            ( 30, channel+"_"+photon_location+ "_aQGC_Weight_30_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_30_Pt"),
-            ( 40, channel+"_"+photon_location+ "_aQGC_Weight_31_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_31_Pt"),
-            ( 50, channel+"_"+photon_location+ "_aQGC_Weight_32_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_32_Pt"),
-            #( 60, channel+"_"+photon_location+ "_aQGC_Weight_33_Pt"),
-            #( 70, channel+"_"+photon_location+ "_aQGC_Weight_34_Pt"),
-            #( 80, channel+"_"+photon_location+ "_aQGC_Weight_35_Pt"),
-            #( 90, channel+"_"+photon_location+ "_aQGC_Weight_36_Pt"),
-            #( 100, channel+"_"+photon_location+ "_aQGC_Weight_37_Pt")
+            ( 15, channel+"_"+photon_location+ "_aQGC_Weight_29_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_29_Pt"),
+            ( 20, channel+"_"+photon_location+ "_aQGC_Weight_30_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_30_Pt"),
+            ( 25, channel+"_"+photon_location+ "_aQGC_Weight_31_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_31_Pt"),
+            ( 30, channel+"_"+photon_location+ "_aQGC_Weight_32_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_32_Pt"),
+            ( 35, channel+"_"+photon_location+ "_aQGC_Weight_33_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_33_Pt"),
+            ( 40, channel+"_"+photon_location+ "_aQGC_Weight_34_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_34_Pt"),
+            ( 45, channel+"_"+photon_location+ "_aQGC_Weight_35_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_35_Pt"),
+            ( 50, channel+"_"+photon_location+ "_aQGC_Weight_36_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_36_Pt"),
+            #( 62.5, channel+"_"+photon_location+ "_aQGC_Weight_37_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_37_Pt"),
             ]
         coupling_strength_histnames_container.append((coupling_type, strength_and_histnames))
         
         # LT2
         coupling_type = "LT2"
         strength_and_histnames = [
-            #( -100, channel+"_"+photon_location+ "_aQGC_Weight_74_Pt"),
-            #( -90, channel+"_"+photon_location+ "_aQGC_Weight_73_Pt"),
-            #( -80, channel+"_"+photon_location+ "_aQGC_Weight_72_Pt"),
-            #( -70, channel+"_"+photon_location+ "_aQGC_Weight_71_Pt"),
-            #( -60, channel+"_"+photon_location+ "_aQGC_Weight_70_Pt"),
-            ( -50, channel+"_"+photon_location+ "_aQGC_Weight_69_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_69_Pt"),
-            ( -40, channel+"_"+photon_location+ "_aQGC_Weight_68_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_68_Pt"),
-            ( -30, channel+"_"+photon_location+ "_aQGC_Weight_67_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_67_Pt"),
-            ( -20, channel+"_"+photon_location+ "_aQGC_Weight_66_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_66_Pt"),
+            #( -62.5, channel+"_"+photon_location+ "_aQGC_Weight_74_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_74_Pt"),
+            ( -50, channel+"_"+photon_location+ "_aQGC_Weight_73_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_73_Pt"),
+            ( -45, channel+"_"+photon_location+ "_aQGC_Weight_72_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_72_Pt"),
+            ( -40, channel+"_"+photon_location+ "_aQGC_Weight_71_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_71_Pt"),
+            ( -35, channel+"_"+photon_location+ "_aQGC_Weight_70_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_70_Pt"),
+            ( -30, channel+"_"+photon_location+ "_aQGC_Weight_69_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_69_Pt"),
+            ( -25, channel+"_"+photon_location+ "_aQGC_Weight_68_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_68_Pt"),
+            ( -20, channel+"_"+photon_location+ "_aQGC_Weight_67_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_67_Pt" ),
+            ( -15, channel+"_"+photon_location+ "_aQGC_Weight_66_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_66_Pt"),
             ( -10, channel+"_"+photon_location+ "_aQGC_Weight_65_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_65_Pt"),
+            ( -5, channel+"_"+photon_location+ "_aQGC_Weight_64_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_64_Pt"),
+            ( -2.5, channel+"_"+photon_location+ "_aQGC_Weight_63_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_63_Pt"),
             ( 0, channel+"_"+photon_location+ "_aQGC_Weight_50_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_50_Pt"),
+            ( 2.5, channel+"_"+photon_location+ "_aQGC_Weight_51_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_51_Pt"),
+            ( 5, channel+"_"+photon_location+ "_aQGC_Weight_52_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_52_Pt"),
             ( 10, channel+"_"+photon_location+ "_aQGC_Weight_53_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_53_Pt"),
-            ( 20, channel+"_"+photon_location+ "_aQGC_Weight_54_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_54_Pt"),
-            ( 30, channel+"_"+photon_location+ "_aQGC_Weight_55_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_55_Pt"),
-            ( 40, channel+"_"+photon_location+ "_aQGC_Weight_56_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_56_Pt"),
-            ( 50, channel+"_"+photon_location+ "_aQGC_Weight_57_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_57_Pt"),
-            #( 60, channel+"_"+photon_location+ "_aQGC_Weight_58_Pt"),
-            #( 70, channel+"_"+photon_location+ "_aQGC_Weight_59_Pt"),
-            #( 80, channel+"_"+photon_location+ "_aQGC_Weight_60_Pt"),
-            #( 90, channel+"_"+photon_location+ "_aQGC_Weight_61_Pt"),
-            #( 100, channel+"_"+photon_location+ "_aQGC_Weight_62_Pt"),
+            ( 15, channel+"_"+photon_location+ "_aQGC_Weight_54_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_54_Pt"),
+            ( 20, channel+"_"+photon_location+ "_aQGC_Weight_55_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_55_Pt"),
+            ( 25, channel+"_"+photon_location+ "_aQGC_Weight_56_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_56_Pt"),
+            ( 30, channel+"_"+photon_location+ "_aQGC_Weight_57_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_57_Pt"),
+            ( 35, channel+"_"+photon_location+ "_aQGC_Weight_58_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_58_Pt"),
+            ( 40, channel+"_"+photon_location+ "_aQGC_Weight_59_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_59_Pt"),
+            ( 45, channel+"_"+photon_location+ "_aQGC_Weight_60_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_60_Pt"),
+            ( 50, channel+"_"+photon_location+ "_aQGC_Weight_61_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_61_Pt"),
+            #( 62.5, channel+"_"+photon_location+ "_aQGC_Weight_62_Pt", channel+"_"+photon_location+ "_aQGC_Covariance_62_Pt"),
             ]
         coupling_strength_histnames_container.append((coupling_type, strength_and_histnames))
-        """
+        
     return coupling_strength_histnames_container
 
 
