@@ -124,14 +124,11 @@ def MakePhotonLocationHistograms(tree, channel, aqgc_weight_index, aqgc_weight):
 #Makes the Standard Photon Location Histograms, but with a Cut on the Sub Leading Photon Pt
 def MakeSubPhotonCutHistograms(tree, channel, aqgc_weight_index, aqgc_weight):
     if( tree.pt_sublph12 > 15 ):
-        channel= channel+"_Sublph15"
-        MakePhotonLocationHistograms(tree, channel, aqgc_weight_index, aqgc_weight)
+        MakePhotonLocationHistograms(tree, channel+"_Sublph15", aqgc_weight_index, aqgc_weight)
     if( tree.pt_sublph12 > 25 ):
-        channel= channel+"_Sublph25"
-        MakePhotonLocationHistograms(tree, channel, aqgc_weight_index, aqgc_weight)
+        MakePhotonLocationHistograms(tree, channel+"_Sublph25", aqgc_weight_index, aqgc_weight)
     if( tree.pt_sublph12 > 40 ):
-        channel= channel+"_Sublph40"
-        MakePhotonLocationHistograms(tree, channel, aqgc_weight_index, aqgc_weight)
+        MakePhotonLocationHistograms(tree, channel+"_Sublph40", aqgc_weight_index, aqgc_weight)
 
 # Histogrmas the reweighting values, with respect to the SM.
 def MakeReweightingHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight):
