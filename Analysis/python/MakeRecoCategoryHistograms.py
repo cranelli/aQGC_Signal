@@ -74,45 +74,52 @@ def MakeRecoCategoryHistograms(inFileLoc="ggTree_mc_ISR.root", outFileLoc="test.
 # Make Histograms weighted to the different aQGC coupling parameters.
 def MakeHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight):
     histogramBuilder.fillCountHistograms(channel+"_All_aQGC_Weight_"+str(aqgc_weight_index), aqgc_weight)
+    
     histogramBuilder.fillPtHistograms(channel+"_All_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
     histogramBuilder.fillPtCategoryHistograms(channel+"All_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
-    
+    MakeCovarianceHistograms(tree, channel+"_All", aqgc_weight_index, aqgc_weight, sm_weight)
+
+
+
     # Make Separate Histograms for EBEB, EB EE, and EE EB Cateogries
     MakePhotonLocationHistograms(tree, channel, aqgc_weight_index, aqgc_weight)
 
+    # Make Histograms for Different Cuts on the SubLeading Photon Pt
     MakeSubPhotonCutHistograms(tree, channel, aqgc_weight_index, aqgc_weight)
 
     #Make Reweighting Histograms
     #MakeReweightingHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight)
 
-    MakeCovarianceHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight)
-
 # Holds the weights of the sm_weight * the aqc_weight
 def MakeCovarianceHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight):
-    histogramBuilder.fillPtCategoryHistograms(channel+"_All_aQGC_Covariance_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight*sm_weight)
-    histogramBuilder.fillPtHistograms(channel+"_All_aQGC_Covariance_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight*sm_weight)
+    histogramBuilder.fillPtCategoryHistograms(channel+"_aQGC_Covariance_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight*sm_weight)
+    histogramBuilder.fillPtHistograms(channel+"_aQGC_Covariance_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight*sm_weight)
 
+    """
     if(tree.isEB_leadph12 and tree.isEB_sublph12):
         histogramBuilder.fillPtHistograms(channel+"_EBEB_aQGC_Covariance_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight*sm_weight)
     
     if(tree.isEB_leadph12 and tree.isEE_sublph12):
         histogramBuilder.fillPtHistograms(channel+"_EBEE_aQGC_Covariance_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight*sm_weight)
-        histogramBuilder.fillPtHistograms(channel+"_EBEEandEEEB_aQGC_Covariance_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight*sm_weight)
+        #histogramBuilder.fillPtHistograms(channel+"_EBEEandEEEB_aQGC_Covariance_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight*sm_weight)
 
     if(tree.isEE_leadph12 and tree.isEB_sublph12):
         histogramBuilder.fillPtHistograms(channel+"_EEEB_aQGC_Covariance_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight*sm_weight)
-        histogramBuilder.fillPtHistograms(channel+"_EBEEandEEEB_aQGC_Covariance_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight*sm_weight)
-
+        #histogramBuilder.fillPtHistograms(channel+"_EBEEandEEEB_aQGC_Covariance_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight*sm_weight)
+    """
 
 def MakePhotonLocationHistograms(tree, channel, aqgc_weight_index, aqgc_weight):
     if(tree.isEB_leadph12 and tree.isEB_sublph12):
         histogramBuilder.fillPtHistograms(channel+"_EBEB_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
+        MakeCovarianceHistograms(tree, channel+"__EBEB", aqgc_weight_index, aqgc_weight, sm_weight)
     if(tree.isEB_leadph12 and tree.isEE_sublph12):
          histogramBuilder.fillPtHistograms(channel+"_EBEE_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
-         histogramBuilder.fillPtHistograms(channel+"_EBEEandEEEB_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
+         MakeCovarianceHistograms(tree, channel+"__EBEE", aqgc_weight_index, aqgc_weight, sm_weight)
+         #histogramBuilder.fillPtHistograms(channel+"_EBEEandEEEB_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
     if(tree.isEE_leadph12 and tree.isEB_sublph12):
         histogramBuilder.fillPtHistograms(channel+"_EEEB_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
-        histogramBuilder.fillPtHistograms(channel+"_EBEEandEEEB_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
+        MakeCovarianceHistograms(tree, channel+"__EEEB", aqgc_weight_index, aqgc_weight, sm_weight)
+        #histogramBuilder.fillPtHistograms(channel+"_EBEEandEEEB_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
     
 #Makes the Standard Photon Location Histograms, but with a Cut on the Sub Leading Photon Pt
 def MakeSubPhotonCutHistograms(tree, channel, aqgc_weight_index, aqgc_weight):
