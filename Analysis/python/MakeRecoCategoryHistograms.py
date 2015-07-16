@@ -118,7 +118,7 @@ def MakePhotonLocationHistograms(tree, channel, aqgc_weight_index, aqgc_weight):
          #histogramBuilder.fillPtHistograms(channel+"_EBEEandEEEB_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
     if(tree.isEE_leadph12 and tree.isEB_sublph12):
         histogramBuilder.fillPtHistograms(channel+"_EEEB_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
-        MakeCovarianceHistograms(tree, channel+"__EEEB", aqgc_weight_index, aqgc_weight, sm_weight)
+        MakeCovarianceHistograms(tree, channel+"_EEEB", aqgc_weight_index, aqgc_weight, sm_weight)
         #histogramBuilder.fillPtHistograms(channel+"_EBEEandEEEB_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
     
 #Makes the Standard Photon Location Histograms, but with a Cut on the Sub Leading Photon Pt
