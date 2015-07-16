@@ -58,10 +58,14 @@ def MakeRecoCategoryHistograms(inFileLoc="ggTree_mc_ISR.root", outFileLoc="test.
             if(isElectronChannel):
                 channel="ElectronChannel"
                 scalefactor = tree.el_trigSF*tree.ph_idSF*tree.ph_evetoSF*tree.PUWeight
+                aqgc_weight=aqgc_weight*scalefactor
+                sm_weight=aqgc_weight*scalefactor
                 MakeHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight)
             if(isMuonChannel):
                 channel="MuonChannel"
                 scalefactor = tree.mu_trigSF*tree.mu_isoSF*tree.mu_idSF*tree.ph_idSF*tree.PUWeight
+                aqgc_weight=aqgc_weight*scalefactor
+                sm_weight=aqgc_weight*scalefactor
                 MakeHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight)
                 # if(not isElectronChannel and not isMuonChannel):
             
@@ -76,20 +80,12 @@ def MakeHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight):
     # Make Separate Histograms for EBEB, EB EE, and EE EB Cateogries
     MakePhotonLocationHistograms(tree, channel, aqgc_weight_index, aqgc_weight)
 
+    MakeSubPhotonCutHistograms(tree, channel, aqgc_weight_index, aqgc_weight)
+
     #Make Reweighting Histograms
     #MakeReweightingHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight)
 
     MakeCovarianceHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight)
-
-# Histogrmas the reweighting values, with respect to the SM.
-def MakeReweightingHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight):
-    reweight = aqgc_weight/sm_weight
-
-    if tree.pt_leadph12 > 200:
-        histogramBuilder.fillAQGCReweightHistograms(channel+"PtGT200_"+str(aqgc_weight_index), reweight)
-    
-    if tree.pt_leadph12 > 70:
-        histogramBuilder.fillAQGCReweightHistograms(channel+"PtGT70_"+str(aqgc_weight_index), reweight)
 
 # Holds the weights of the sm_weight * the aqc_weight
 def MakeCovarianceHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight):
@@ -118,6 +114,27 @@ def MakePhotonLocationHistograms(tree, channel, aqgc_weight_index, aqgc_weight):
         histogramBuilder.fillPtHistograms(channel+"_EEEB_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
         histogramBuilder.fillPtHistograms(channel+"_EBEEandEEEB_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
     
+#Makes the Standard Photon Location Histograms, but with a Cut on the Sub Leading Photon Pt
+def MakeSubPhotonCutHistograms(tree, channel, aqgc_weight_index, aqgc_weight):
+    if( tree.pt_sublph12 > 15 ):
+        channel= channel+"_Sublph15"
+        MakePhotonLocationHistograms(tree, channel, aqgc_weight_index, aqgc_weight)
+    if( tree.pt_sublph12 > 25 ):
+        channel= channel+"_Sublph25"
+        MakePhotonLocationHistograms(tree, channel, aqgc_weight_index, aqgc_weight)
+    if( tree.pt_sublph12 > 40 ):
+        channel= channel+"_Sublph40"
+        MakePhotonLocationHistograms(tree, channel, aqgc_weight_index, aqgc_weight)
+
+# Histogrmas the reweighting values, with respect to the SM.
+def MakeReweightingHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight):
+    reweight = aqgc_weight/sm_weight
+
+    if tree.pt_leadph12 > 200:
+        histogramBuilder.fillAQGCReweightHistograms(channel+"PtGT200_"+str(aqgc_weight_index), reweight)
+    
+    if tree.pt_leadph12 > 70:
+        histogramBuilder.fillAQGCReweightHistograms(channel+"PtGT70_"+str(aqgc_weight_index), reweight)
 
 #Separate Lead and Sub Lead Photons between Barrel and EndCap.
 # 0 is EBEB, 1 EBEE, 2 EEEB, 3 is all others
