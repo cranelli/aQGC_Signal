@@ -29,6 +29,8 @@ SM_WEIGHT_INDEX=0
 TREE_LOC="ggNtuplizer/EventTree"
 
 
+SUBL_PH_CUTS=[15, 20, 25, 30, 35, 40]
+
 def MakeRecoCategoryHistograms(inFileLoc="ggTree_mc_ISR.root", outFileLoc="test.root"):
 
     # In File, Out File, and Tree
@@ -58,14 +60,14 @@ def MakeRecoCategoryHistograms(inFileLoc="ggTree_mc_ISR.root", outFileLoc="test.
             if(isElectronChannel):
                 channel="ElectronChannel"
                 scalefactor = tree.el_trigSF*tree.ph_idSF*tree.ph_evetoSF*tree.PUWeight
-                aqgc_weight=aqgc_weight*scalefactor
-                sm_weight=aqgc_weight*scalefactor
+                #aqgc_weight=aqgc_weight*scalefactor
+                #sm_weight=sm_weight*scalefactor
                 MakeHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight)
             if(isMuonChannel):
                 channel="MuonChannel"
                 scalefactor = tree.mu_trigSF*tree.mu_isoSF*tree.mu_idSF*tree.ph_idSF*tree.PUWeight
-                aqgc_weight=aqgc_weight*scalefactor
-                sm_weight=aqgc_weight*scalefactor
+                #aqgc_weight=aqgc_weight*scalefactor
+                #sm_weight=sm_weight*scalefactor
                 MakeHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight)
                 # if(not isElectronChannel and not isMuonChannel):
             
@@ -75,8 +77,11 @@ def MakeRecoCategoryHistograms(inFileLoc="ggTree_mc_ISR.root", outFileLoc="test.
 def MakeHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight):
     histogramBuilder.fillCountHistograms(channel+"_All_aQGC_Weight_"+str(aqgc_weight_index), aqgc_weight)
     
-    histogramBuilder.fillPtHistograms(channel+"_All_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
-    histogramBuilder.fillPtCategoryHistograms(channel+"All_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
+    histogramBuilder.fillPtHistograms(channel+"_All_LeadPhoton_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
+    histogramBuilder.fillPtHistograms(channel+"_All_SublPhoton_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_sublph12, aqgc_weight)
+    histogramBuilder.fill2DPtHistograms(channel+"_All_LeadAndSublPhoton_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, tree.pt_sublph12, aqgc_weight)
+
+    histogramBuilder.fillPtCategoryHistograms(channel+"All_LeadPhoton_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
     MakeCovarianceHistograms(tree, channel+"_All", aqgc_weight_index, aqgc_weight, sm_weight)
 
 
@@ -111,10 +116,10 @@ def MakeCovarianceHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_w
 def MakePhotonLocationHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight):
     if(tree.isEB_leadph12 and tree.isEB_sublph12):
         histogramBuilder.fillPtHistograms(channel+"_EBEB_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
-        MakeCovarianceHistograms(tree, channel+"__EBEB", aqgc_weight_index, aqgc_weight, sm_weight)
+        MakeCovarianceHistograms(tree, channel+"_EBEB", aqgc_weight_index, aqgc_weight, sm_weight)
     if(tree.isEB_leadph12 and tree.isEE_sublph12):
          histogramBuilder.fillPtHistograms(channel+"_EBEE_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
-         MakeCovarianceHistograms(tree, channel+"__EBEE", aqgc_weight_index, aqgc_weight, sm_weight)
+         MakeCovarianceHistograms(tree, channel+"_EBEE", aqgc_weight_index, aqgc_weight, sm_weight)
          #histogramBuilder.fillPtHistograms(channel+"_EBEEandEEEB_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
     if(tree.isEE_leadph12 and tree.isEB_sublph12):
         histogramBuilder.fillPtHistograms(channel+"_EEEB_aQGC_Weight_"+str(aqgc_weight_index), tree.pt_leadph12, aqgc_weight)
@@ -123,12 +128,22 @@ def MakePhotonLocationHistograms(tree, channel, aqgc_weight_index, aqgc_weight, 
     
 #Makes the Standard Photon Location Histograms, but with a Cut on the Sub Leading Photon Pt
 def MakeSubPhotonCutHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight):
+    for subl_ph_cut in SUBL_PH_CUTS:
+        if( tree.pt_sublph12 > subl_ph_cut ):
+            MakePhotonLocationHistograms(tree, channel+"_Sublph"+str(subl_ph_cut), aqgc_weight_index, aqgc_weight, sm_weight)
+
+"""
     if( tree.pt_sublph12 > 15 ):
         MakePhotonLocationHistograms(tree, channel+"_Sublph15", aqgc_weight_index, aqgc_weight, sm_weight)
+    if( tree.pt_sublph12 > 20 ):
+        MakePhotonLocationHistograms(tree, channel+"_Sublph20", aqgc_weight_index, aqgc_weight, sm_weight)
     if( tree.pt_sublph12 > 25 ):
         MakePhotonLocationHistograms(tree, channel+"_Sublph25", aqgc_weight_index, aqgc_weight, sm_weight)
+    if( tree.pt_sublph12 > 30 ):
+        MakePhotonLocationHistograms(tree, channel+"_Sublph30", aqgc_weight_index, aqgc_weight, sm_weight)
     if( tree.pt_sublph12 > 40 ):
         MakePhotonLocationHistograms(tree, channel+"_Sublph40", aqgc_weight_index, aqgc_weight, sm_weight)
+"""
 
 # Histogrmas the reweighting values, with respect to the SM.
 def MakeReweightingHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight):

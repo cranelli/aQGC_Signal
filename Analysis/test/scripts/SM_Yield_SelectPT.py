@@ -18,8 +18,9 @@ HISTOGRAM_DIR="../Histograms/"
 
 CHANNELS = ["ElectronChannel", "MuonChannel"]
 PHOTON_LOCATIONS = ["EBEB", "EBEE", "EEEB"]
+SUBL_PHOTON_CUTS = ["15", "20", "25", "30", "35", "40"]
 
-LAST_PTS = [70, 80, 90, 95, 100, 105, 110, 120, 125, 150, 175, 200] # 70+, 100+ etc
+LAST_PTS = [70, 80, 90, 100, 125, 150, 200] # 70+, 100+ etc
 #BACKGROUND_UNCERTAINTY = {'ElectronChannel':9.1, 'MuonChannel':10.5}
 
 # Run over all the aQGC Classes, in this case the LT's and the LM's
@@ -38,11 +39,12 @@ def SMYield(in_file_name, out_file_name):
     
     for channel in CHANNELS:
         for photon_location in PHOTON_LOCATIONS:
-            for last_pt in LAST_PTS:
-                MakeHists(channel, photon_location, last_pt, inFile, outFile)
+            for subl_cut in SUBL_PHOTON_CUTS:
+                for last_pt in LAST_PTS:
+                    MakeHists(channel, subl_cut, photon_location, last_pt, inFile, outFile)
 
-def MakeHists(channel, photon_location, last_pt, inFile, outFile):
-    print channel, photon_location, last_pt 
+def MakeHists(channel, subl_cut, photon_location, last_pt, inFile, outFile):
+    print channel, subl_cut, photon_location, last_pt 
     #print "Coupling Type ", coupling_type
 
     # Histogram Range Depends on Coupling Type
@@ -53,7 +55,8 @@ def MakeHists(channel, photon_location, last_pt, inFile, outFile):
     smLastPtHist.GetYaxis().SetTitle("SM Yield")
 
     # Get SM and Error
-    h1SM = inFile.Get(channel+ "_"+photon_location+"_ScaleFactor_Pt")
+    smHistName=photon_location+ "_Sublph" +subl_cut +"_"+channel+ "_ScaleFactor_Pt"
+    h1SM = inFile.Get(smHistName)
     bin_start = h1SM.FindBin(last_pt)
     bin_finish = h1SM.GetNbinsX() + 1 # Include Overflow Bin
     sm_error_ctype= c_double()
@@ -62,7 +65,7 @@ def MakeHists(channel, photon_location, last_pt, inFile, outFile):
 
     smLastPtHist.SetBinContent(1, sm_count)
     smLastPtHist.SetBinError(1, sm_error)
-    smLastPtHist.Write(channel+"_"+photon_location+"_Pt"+str(last_pt)+"_SMYield")
+    smLastPtHist.Write(channel+"_"+photon_location+"_Pt"+str(last_pt)+"_"+subl_cut+"_SMYield")
     
 
 if __name__=="__main__":

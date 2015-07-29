@@ -84,7 +84,7 @@ def fillPtHistograms(prefix, pt, weight=1, bins=500, xmin=0, xmax=1000):
     Histograms[key].Fill(pt, weight)
 
 #Function to create and Fill a 2D Pt Histograms
-def fill2DPtHistograms(prefix, x_pt, y_pt, weight=1, xbins=400, xmin=0, xmax=200, ybins=400, ymin=0, ymax=200):
+def fill2DPtHistograms(prefix, x_pt, y_pt, weight=1, xbins=500, xmin=0, xmax=1000, ybins=500, ymin=0, ymax=1000):
     key = prefix+"_2DPt"
     if not key in Histograms:
         Histograms[key] = TH2F(key, key, xbins, xmin, xmax, ybins, ymin, ymax)
