@@ -4,7 +4,9 @@
 # 
 # Example execution from command line:
 
-#  python MakeRecoCategoryHistograms.py /afs/cern.ch/work/c/cranelli/public/WGamGam/ReFilterFinalNtuple/LepGammaGammaFinalElandMuUnblindAll_2015_6_9_ScaleFactors/job_LNuAA_LM_Reweight/Job_0000/tree.root ../test/Histograms/LepGammaGammaFinalElandMuUnblindAll_2015_6_9_ScaleFactors/LM0123_Reweight/Reweighted_RecoCategoryHistograms.root
+# python MakeRecoCategoryHistograms.py /afs/cern.ch/work/c/cranelli/public/WGamGam/aQGC_ReFilterFinalNtuple/AGC_LepGammaGammaFinalElandMuUnblindAll_2015_12_16/job_LNuAA_LT_Reweight/Job_0000/tree.root ../test/Histograms/AGC_LepGammaGammaFinalElandMuUnblindAll_2015_12_16/LT012_Reweight/Reweighted_RecoCategoryHistograms.root 
+
+
 
 
 
@@ -31,7 +33,7 @@ TREE_LOC="ggNtuplizer/EventTree"
 
 SUBL_PH_CUTS=[15, 20, 25, 30, 35, 40]
 
-def MakeRecoCategoryHistograms(inFileLoc="ggTree_mc_ISR.root", outFileLoc="test.root"):
+def MakeRecoCategoryHistograms(inFileLoc="", outFileLoc="test.root"):
 
     # In File, Out File, and Tree
     inFile = TFile(inFileLoc)
@@ -53,19 +55,19 @@ def MakeRecoCategoryHistograms(inFileLoc="ggTree_mc_ISR.root", outFileLoc="test.
             aqgc_weight = aqgc_weights[aqgc_weight_index]
             #(Using Scale Factors)
 
-            scalefactor =1;
+           # scalefactor =1;
             isElectronChannel=(tree.el_passtrig_n> 0 and tree.el_n==1 and tree.mu_n==0)
             isMuonChannel=(tree.mu_passtrig25_n>0 and tree.mu_n==1 and tree.el_n==0)
         
             if(isElectronChannel):
                 channel="ElectronChannel"
-                scalefactor = tree.el_trigSF*tree.ph_idSF*tree.ph_evetoSF*tree.PUWeight
+                #scalefactor = tree.el_trigSF*tree.ph_idSF*tree.ph_evetoSF*tree.PUWeight
                 #aqgc_weight=aqgc_weight*scalefactor
                 #sm_weight=sm_weight*scalefactor
                 MakeHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight)
             if(isMuonChannel):
                 channel="MuonChannel"
-                scalefactor = tree.mu_trigSF*tree.mu_isoSF*tree.mu_idSF*tree.ph_idSF*tree.PUWeight
+                #scalefactor = tree.mu_trigSF*tree.mu_isoSF*tree.mu_idSF*tree.ph_idSF*tree.PUWeight
                 #aqgc_weight=aqgc_weight*scalefactor
                 #sm_weight=sm_weight*scalefactor
                 MakeHistograms(tree, channel, aqgc_weight_index, aqgc_weight, sm_weight)

@@ -9,8 +9,8 @@ from array import array
 
 from ctypes import c_double
 
-QGC_HISTOGRAM_DIRS=[("LM","../Histograms/LepGammaGammaFinalElandMuUnblindAll_2015_6_9_ScaleFactors/LM0123_Reweight/"),
-                ("LT", "../Histograms/LepGammaGammaFinalElandMuUnblindAll_2015_6_9_ScaleFactors/LT012_Reweight/")]
+QGC_HISTOGRAM_DIRS=[("LM","../Histograms/AGC_LepGammaGammaFinalElandMuUnblindAll_2015_12_16/LM0123_Reweight/"),
+                ("LT", "../Histograms/AGC_LepGammaGammaFinalElandMuUnblindAll_2015_12_16/LT012_Reweight/")]
 
 
 CHANNELS = ["ElectronChannel", "MuonChannel"]
